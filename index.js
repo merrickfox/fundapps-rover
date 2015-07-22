@@ -52,6 +52,7 @@ Rover.prototype.rotate = function (direction) {
 };
 
 Rover.prototype.maneuver = function (direction) {
+
   if (this.direction === 'N') {
     this.y = (direction === 'f') ? this.y + 1 : this.y - 1
 
@@ -64,13 +65,25 @@ Rover.prototype.maneuver = function (direction) {
   } else if (this.direction === 'W') {
     this.x = (direction === 'f') ? this.x - 1 : this.x + 1
   }
+
+  //check bounds and wrap
+  if (this.y > 100) this.y = 0;
+  if (this.y < 0) this.y = 100;
+  if (this.x > 100) this.x = 0;
+  if (this.x < 0) this.x = 100;
 }
 
-//test helper
+//test helper functions
 Rover.prototype.reset = function () {
   this.x = 0;
   this.y = 0;
   this.direction = 'N';
+}
+
+Rover.prototype.set = function (x, y, direction) {
+  this.x = x;
+  this.y = y;
+  this.direction = direction;
 }
 
 
