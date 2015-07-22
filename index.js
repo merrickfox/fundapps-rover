@@ -7,18 +7,25 @@ var Rover = function () {
 var rover = new Rover();
 
 Rover.prototype.move = function (command) {
-  if(command === 'f') {
-    this.y++;
-  }
-  if(command === 'b') {
-    this.y--;
-  }
-  if(command === 'l') {
-    this.rotate(command);
-  }
-  if(command === 'r') {
-    this.rotate(command);
-  }
+
+  var commandArray = command.split('');
+
+  for (var i = 0; i < commandArray.length; i++) {
+
+    if(commandArray[i] === 'f') {
+      this.maneuver(commandArray[i]);
+    }
+    if(commandArray[i] === 'b') {
+      this.maneuver(commandArray[i]);
+    }
+    if(commandArray[i] === 'l') {
+      this.rotate(commandArray[i]);
+    }
+    if(commandArray[i] === 'r') {
+      this.rotate(commandArray[i]);
+    }
+  };
+
 };
 
 Rover.prototype.rotate = function (direction) {
@@ -32,6 +39,7 @@ Rover.prototype.rotate = function (direction) {
     } else {
       newIndex = currentIndex - 1;
     }
+
   } else {
     if (currentIndex + 1 > 3){
       newIndex = 0;
@@ -42,6 +50,29 @@ Rover.prototype.rotate = function (direction) {
 
   this.direction = directions[newIndex];
 };
+
+Rover.prototype.maneuver = function (direction) {
+  if (this.direction === 'N') {
+    this.y = (direction === 'f') ? this.y + 1 : this.y - 1
+
+  } else if (this.direction === 'S') {
+    this.y = (direction === 'f') ? this.y - 1 : this.y + 1
+
+  } else if (this.direction === 'E') {
+    this.x = (direction === 'f') ? this.x + 1 : this.x - 1
+
+  } else if (this.direction === 'W') {
+    this.x = (direction === 'f') ? this.x - 1 : this.x + 1
+  }
+}
+
+//test helper
+Rover.prototype.reset = function () {
+  this.x = 0;
+  this.y = 0;
+  this.direction = 'N';
+}
+
 
 
 

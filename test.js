@@ -41,8 +41,13 @@ describe('Rover single move commands', function() {
 });
 
 describe('Rover multi move commands', function() {
+  beforeEach(function() {
+    rover.reset();
+  });
+
   it('should combine directions and rotations and update the coords accordingly', function() {
     rover.move('ffrf');
+
     rover.y.should.be.exactly(2);
     rover.x.should.be.exactly(1);
     rover.direction.should.be.exactly('E');
@@ -50,6 +55,7 @@ describe('Rover multi move commands', function() {
 
   it('should combine directions and rotations and update the coords accordingly', function() {
     rover.move('ffrffrbb');
+
     rover.y.should.be.exactly(4);
     rover.x.should.be.exactly(2);
     rover.direction.should.be.exactly('S');
@@ -57,6 +63,7 @@ describe('Rover multi move commands', function() {
 
   it('should combine directions and rotations and update the coords accordingly', function() {
     rover.move('ffrrflllb');
+
     rover.y.should.be.exactly(1);
     rover.x.should.be.exactly(1);
     rover.direction.should.be.exactly('W');
