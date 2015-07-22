@@ -13,7 +13,7 @@ describe('Initial settings', function() {
   });
 });
 
-describe('Rover move command', function() {
+describe('Rover single move commands', function() {
   it('should take a forward command and update the coordinates accordingly', function() {
     rover.move('f');
     rover.y.should.be.exactly(1);
@@ -38,5 +38,28 @@ describe('Rover move command', function() {
     rover.x.should.be.exactly(0);
   });
 
+});
+
+describe('Rover multi move commands', function() {
+  it('should combine directions and rotations and update the coords accordingly', function() {
+    rover.move('ffrf');
+    rover.y.should.be.exactly(2);
+    rover.x.should.be.exactly(1);
+    rover.direction.should.be.exactly('E');
+  });
+
+  it('should combine directions and rotations and update the coords accordingly', function() {
+    rover.move('ffrffrbb');
+    rover.y.should.be.exactly(4);
+    rover.x.should.be.exactly(2);
+    rover.direction.should.be.exactly('S');
+  });
+
+  it('should combine directions and rotations and update the coords accordingly', function() {
+    rover.move('ffrrflllb');
+    rover.y.should.be.exactly(1);
+    rover.x.should.be.exactly(1);
+    rover.direction.should.be.exactly('W');
+  });
 });
 
