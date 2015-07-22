@@ -9,7 +9,7 @@ describe('Initial settings', function() {
   });
 
   it('The rover should have a direction variable and it should be N initially', function() {
-    rover.direction.should.be('N');
+    rover.direction.should.be.exactly('N');
   });
 });
 
