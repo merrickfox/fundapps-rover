@@ -13,6 +13,34 @@ Rover.prototype.move = function (command) {
   if(command === 'b') {
     this.y--;
   }
+  if(command === 'l') {
+    this.rotate(command);
+  }
+  if(command === 'r') {
+    this.rotate(command);
+  }
+};
+
+Rover.prototype.rotate = function (direction) {
+  var directions = ['N', 'E', 'S', 'W'];
+  var currentIndex = _.indexOf(directions, this.direction);
+  var newIndex;
+
+  if (direction === 'l') {
+    if (currentIndex - 1 < 0){
+      newIndex = 3;
+    } else {
+      newIndex = currentIndex - 1;
+    }
+  } else {
+    if (currentIndex + 1 > 3){
+      newIndex = 0;
+    } else {
+      newIndex = currentIndex + 1;
+    }
+  }
+
+  this.direction = directions[newIndex];
 };
 
 
