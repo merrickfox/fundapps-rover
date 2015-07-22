@@ -13,3 +13,16 @@ describe('Initial settings', function() {
   });
 });
 
+describe('Rover move command', function() {
+  it('should take a forward command and update the coordinates accordingly', function() {
+    rover.move('f');
+    rover.y.should.be.exactly(1);
+  });
+
+  it('should take a backward command and update the coordinates accordingly', function() {
+    rover.move('b');
+    rover.y.should.be.exactly(0);
+  });
+
+});
+
