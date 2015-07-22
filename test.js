@@ -70,3 +70,35 @@ describe('Rover multi move commands', function() {
   });
 });
 
+describe('Rover wrapping around planet', function() {
+  beforeEach(function() {
+    rover.reset();
+  });
+
+  it('should move to y 100 when you go south at y 0', function() {
+    rover.move('b');
+
+    rover.y.should.be.exactly(100);
+  });
+
+  it('should move to y 0 when you go north at y 100', function() {
+    rover.set(0, 100, 'N');
+    rover.move('f');
+
+    rover.y.should.be.exactly(0);
+  });
+
+  it('should move to x 100 when you go west at x 0', function() {
+    rover.move('lf');
+
+    rover.x.should.be.exactly(100);
+  });
+
+  it('should move to x 0 when you go east at x 100', function() {
+    rover.set(100, 0, 'E');
+    rover.move('f');
+
+    rover.x.should.be.exactly(0);
+  });
+});
+
