@@ -1,0 +1,30 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Rover Tests</title>
+  <link rel="stylesheet" href="node_modules/mocha/mocha.css" />
+  <style>
+    #mocha h2,
+    #mocha .test.pass::before,
+    #mocha .test.fail::before {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="mocha"></div>
+  <script src="node_modules/lodash/index.js"></script>
+  <script src="node_modules/should/should.js"></script>
+  <script src="node_modules/mocha/mocha.js"></script>
+  <script>mocha.setup('bdd');</script>
+
+  <script src="index.js"></script>
+  <script src="test.js"></script>
+
+  <script>
+    mocha.run();
+  </script>
+
+  <script src="//localhost:35729/livereload.js"></script>
+</body>
+</html>
