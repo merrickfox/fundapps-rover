@@ -24,5 +24,19 @@ describe('Rover move command', function() {
     rover.y.should.be.exactly(0);
   });
 
+  it('should take a left command and update the direction accordingly', function() {
+    rover.move('l');
+    rover.direction.should.be.exactly('W');
+    rover.y.should.be.exactly(0);
+    rover.x.should.be.exactly(0);
+  });
+
+  it('should take a right command and update the direction accordingly', function() {
+    rover.move('r');
+    rover.direction.should.be.exactly('N');
+    rover.y.should.be.exactly(0);
+    rover.x.should.be.exactly(0);
+  });
+
 });
 
