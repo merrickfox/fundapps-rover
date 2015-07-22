@@ -102,3 +102,24 @@ describe('Rover wrapping around planet', function() {
   });
 });
 
+describe('Rover obstacle detection', function() {
+  beforeEach(function() {
+    rover.reset();
+  });
+
+  it('raise the the obstacle flag and stop moving', function() {
+    rover.move('ffffff');
+
+    rover.y.should.be.exactly(3);
+    rover.stoppedForObstacle.should.equal(true);
+  });
+
+  it('raise the the obstacle flag and stop moving', function() {
+    rover.move('ffffffr');
+
+    rover.y.should.be.exactly(3);
+    rover.direction.should.be.exactly('N');
+    rover.stoppedForObstacle.should.equal(true);
+  });
+});
+
