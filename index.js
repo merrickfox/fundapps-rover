@@ -2,15 +2,34 @@ var Rover = function () {
   this.x = 0;
   this.y = 0;
   this.direction = 'N';
+  this.stoppedForObstacle = false;
+}
+
+var Obstacle = function (x, y) {
+  this.x = x;
+  this.y = y;
 }
 
 var rover = new Rover();
+var obstacle = new Obstacle(0, 4);
+var obstacleCheck;
+
+obstacleCheck = function  (x, y) {
+  if (x === obstacle.x && y === obstacle.y) {
+    rover.stoppedForObstacle = true;
+    return true;
+
+  } else {
+    return false;
+  }
+};
 
 Rover.prototype.move = function (command) {
 
   var commandArray = command.split('');
 
   for (var i = 0; i < commandArray.length; i++) {
+    if(this.stoppedForObstacle) return;
 
     if(commandArray[i] === 'f') {
       this.maneuver(commandArray[i]);
@@ -52,6 +71,9 @@ Rover.prototype.rotate = function (direction) {
 };
 
 Rover.prototype.maneuver = function (direction) {
+  var lastX = this.x;
+  var lastY = this.y;
+  var obstaclePresent;
 
   if (this.direction === 'N') {
     this.y = (direction === 'f') ? this.y + 1 : this.y - 1
@@ -71,6 +93,11 @@ Rover.prototype.maneuver = function (direction) {
   if (this.y < 0) this.y = 100;
   if (this.x > 100) this.x = 0;
   if (this.x < 0) this.x = 100;
+
+  //check for obstacle
+  obstaclePresent = obstacleCheck(this.x, this.y);
+  this.x = (obstaclePresent) ? lastX : this.x;
+  this.y = (obstaclePresent) ? lastY : this.y;
 }
 
 //test helper functions
@@ -78,6 +105,7 @@ Rover.prototype.reset = function () {
   this.x = 0;
   this.y = 0;
   this.direction = 'N';
+  this.stoppedForObstacle = false;
 }
 
 Rover.prototype.set = function (x, y, direction) {
