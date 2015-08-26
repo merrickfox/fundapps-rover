@@ -1,4 +1,4 @@
-#### FundApps Rover
+#### OO JS Rover, Developed using TDD
 
 Tests are in test.js
 
